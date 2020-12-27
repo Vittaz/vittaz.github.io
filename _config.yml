@@ -1,16 +1,16 @@
-title:              Clean Blog
+title:              Vittorio Viti Portfoglio
 email:              vittorio.viti@studenti.unipr.it
-description:        A Blog Theme by Start Bootstrap
+description:        "Data will talk to you,if you are willing to listen"
 author:             Start Bootstrap
 baseurl:            "/vittaz.github.io"
 url:                "https://vittaz.github.io"
 
 # Social Profiles
-twitter_username:   SBootstrap
-github_username:    StartBootstrap
-facebook_username:  StartBootstrap
+twitter_username:   
+github_username:    Vittaz
+facebook_username:  vittorio.vintage.viti
 instagram_username:  
-linkedin_username:
+linkedin_username: vittorio-viti
 
 # Add your google-analytics ID here to activate google analytics
 google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
