@@ -1,0 +1,33 @@
+---
+layout: post
+title: "Cocktail Analysis"
+subtitle: "An analysis of the american cocktail industry"
+date: 2021-01-01 19:30:00 +0100
+background: '/img/posts/08.jpg'
+---
+
+<p>As a passionate of Cocktails and data, I decided to take another challenge on <a href="https://www.kaggle.com/">Kaggle</a> 
+<br>This time I found a <a href="https://www.kaggle.com/shuyangli94/cocktails-hotaling-co">dataset of cocktails</a> that contains an huge list of coktails made by bars based mostly in the USA</p>
+<p>The goal of this exercise and analysis was to realize a powerBI dashboard trying to improve my skills with the graphic part there, focusing more on the visual representation and the data organization of the page trying to build up a using a pop up Menu to the side.<p>
+<p>The Dataset it's as well as a good one for doing some NLP applications, so it's required a really well-done pre-processing phase at the begin.
+<br>You can see the final Dashboard that is public <a href="https://app.powerbi.com/view?r=eyJrIjoiMTY5ZWJlZDktODQ5Mi00Mjg4LTkzNDYtOTYyZDVmMDQ3Y2EwIiwidCI6ImVkMGUzNDE0LTZlNTYtNDU0Yy04YTgyLWViODBiZWZiNzM4YiIsImMiOjh9&pageName=ReportSectionee81158eebd0e3d61a37">here</a></p>
+
+<h1> Cocktail Analysis – Pre-Processing Phase </h1>
+
+<p> The most interesting thing of this dataset is that contain a lot of raw data that require a clean-up before further analysis. 
+Doing pre-processing in PowerBI is something that I never did before, or at least not at the level of details like this time, cause i think that doing pre processing is much easier using like a Python script.
+After a quick look at the dataset, I saw that I had a few fields that are interesting but as they are organized, they cannot be used for the next analysis step.
+In fact the fields “Garnish” and “Ingredients” contains informations about the ingredients and garnishes specifing the quantities for the cocktails preparation. What i wanted to do was to isolate exactly the informations about : garnish and ingredient name and garnish and ingredient quantity.
+The Pre-Processing phase in PowerBI is the following: 
+</p>
+
+<ul>
+  <li>Splitting the columns "Ingredients” and "Garnish" by the comma delimiter.</li>
+  <li>Splitting the columns "Ingredients" and "Garnish" previously splitted, isolating for each ingredient and garnish, the quanity of them generating a new column for each item called "quantity"</li>
+</ul>
+
+<p>In most of the cases at the second point, for the creation of the column quanity, the process was rough, i used a lot of times the function in PowerBI: "Columns from Examples" </p>
+
+<h1> Cocktail Analysis – Data Model Construction </h1>
+
+<p> <img src="/img/posts/CADataModel.png"> </p>
