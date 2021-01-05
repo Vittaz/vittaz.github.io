@@ -7,27 +7,178 @@ background: '/img/posts/08.jpg'
 ---
 
 <p>As a passionate of Cocktails and data, I decided to take another challenge on <a href="https://www.kaggle.com/">Kaggle</a> 
-<br>This time I found a <a href="https://www.kaggle.com/shuyangli94/cocktails-hotaling-co">dataset of cocktails</a> that contains an huge list of coktails made by bars based mostly in the USA</p>
-<p>The goal of this exercise and analysis was to realize a powerBI dashboard trying to improve my skills with the graphic part there, focusing more on the visual representation and the data organization of the page trying to build up a using a pop up Menu to the side.<p>
-<p>The Dataset it's as well as a good one for doing some NLP applications, so it's required a really well-done pre-processing phase at the begin.
-<br>You can see the final Dashboard that is public <a href="https://app.powerbi.com/view?r=eyJrIjoiMTY5ZWJlZDktODQ5Mi00Mjg4LTkzNDYtOTYyZDVmMDQ3Y2EwIiwidCI6ImVkMGUzNDE0LTZlNTYtNDU0Yy04YTgyLWViODBiZWZiNzM4YiIsImMiOjh9&pageName=ReportSectionee81158eebd0e3d61a37">here</a></p>
+<br>This time I found a <a href="https://www.kaggle.com/shuyangli94/cocktails-hotaling-co">dataset of cocktails</a> made by bars located mostly in the USA</p>
+<p>The goal of this exercise was to create a powerBI dashboard trying to improve my skills with the graphic and user friendly representation,
+  focusing more on and the data organization of the page using a pop up Menu to the side. After that part, i challenged myself doing an analysis using the dashboard information.<p>
+<p>The Dataset it's a perfect one for doing NLP tasks, in fact quickly enough i noticed that was required a really well-done pre-processing phase to clean up and organize in a better way the dataset.
+<br>You can see the final Dashboard that is public <a href="https://app.powerbi.com/view?r=eyJrIjoiMTY5ZWJlZDktODQ5Mi00Mjg4LTkzNDYtOTYyZDVmMDQ3Y2EwIiwidCI6ImVkMGUzNDE0LTZlNTYtNDU0Yy04YTgyLWViODBiZWZiNzM4YiIsImMiOjh9&pageName=ReportSectionee81158eebd0e3d61a37">here.</a></p>
 
 <h1> Cocktail Analysis – Pre-Processing Phase </h1>
 
-<p> The most interesting thing of this dataset is that contain a lot of raw data that require a clean-up before further analysis. 
-Doing pre-processing in PowerBI is something that I never did before, or at least not at the level of details like this time, cause i think that doing pre processing is much easier using like a Python script.
-After a quick look at the dataset, I saw that I had a few fields that are interesting but as they are organized, they cannot be used for the next analysis step.
-In fact the fields “Garnish” and “Ingredients” contains informations about the ingredients and garnishes specifing the quantities for the cocktails preparation. What i wanted to do was to isolate exactly the informations about : garnish and ingredient name and garnish and ingredient quantity.
-The Pre-Processing phase in PowerBI is the following: 
+<p> Was really interesting noticing that the dataset contains a lot of raw data that demands a clean-up before further analysis. 
+Doing pre-processing in PowerBI is something that I never did before, or at least not at this level of details.
+I still think that a Python script for example is an easier way to do this job, but PowerBI permits to do a lot of things, so i decided to take that path.
+After a quick look at the dataset, in fact, i saw that I had a few fields that i need for the analysis but as they are organized, they cannot be used for the next analysis step.
+The fields “Garnish” and “Ingredients” for example, contains information in term of garnishes and ingredients used, specifying as well the quantities 
+that are necessaries for the cocktails preparation. The pre-processing phase here consists in separate from the whole textual information exactly the information about : garnish and ingredient name, and garnish and ingredient quantity.
+The Pre-Processing phase in PowerBI will be the following: 
 </p>
 
 <ul>
   <li>Splitting the columns "Ingredients” and "Garnish" by the comma delimiter.</li>
-  <li>Splitting the columns "Ingredients" and "Garnish" previously splitted, isolating for each ingredient and garnish, the quanity of them generating a new column for each item called "quantity"</li>
+  <li>Splitting the columns "Ingredients" and "Garnish" previously splitted, isolating for each ingredient and garnish the quantity of them, generating a new column for each item called "quantity"</li>
 </ul>
 
-<p>In most of the cases at the second point, for the creation of the column quanity, the process was rough, i used a lot of times the function in PowerBI: "Columns from Examples" </p>
+<p>
+    In most of the cases at the second step, for the creation of the column quantity, the process was rough, i used a lot of times the function in PowerBI: "Columns from Examples".
+</p>
 
 <h1> Cocktail Analysis – Data Model Construction </h1>
 
-<p> <img src="/img/posts/CADataModel.png" width="600" height="400"> </p>
+<p> 
+    <img src="/img/posts/CADataModel.png" width="600" height="400"> 
+</p>
+
+<p> 
+I started from an initial and unique table (table “hoteling_cocktails") that due to the previous pre-processing phase become the main cocktails table with all the information related to the cocktails: bar, location, company, bartender etc.. . 
+As a cocktail is made by different ingredients and garnishes, i created new tables and made the links to them: Table “Ingredients” and “Garnish” that are showing the relationships cocktails-ingredients and cocktails-garnishes.
+To complete the data model, a table “Countries and codes” is added and linked to the main/cocktails table. This last one operation was necessary for a correct visualization and localization of each cocktail 
+using the powerBi geo-localization component. For creating the relationship between the tables in the data model, a primary key is used: "cocktailID". This primary key permits to handle all the relationships between cocktails - ingredients/garnishes. 
+The relationship between a single cocktail and ingredients/garnishes will be one to many, cause a cocktail can me made by multiple ingredients and can have multiple garnishes.
+</p>
+
+<h1>
+    Cocktail Analysis – Bartender Analysis
+</h1>
+
+<p>
+    This first analysis have the goal to find who is the best Bartender answering at these questions:
+</p>
+
+<ol>
+  <li>What is the best Bartender based on the number of Cocktail Made?</li>
+<p>The best bartender based on the number of cocktails made is “Francesco Lafranconi” with 38 different cocktails</p>
+  <li>What is the best Bartender based on the total number of different ingredients used in the cocktails?</li>
+<p>Francesco Lafranconi is again the best bartender based on the total number of different ingredients used.</p>
+  <li>What is the Bartender that worked in many different bars?</li>
+<p>Kevin Diedrich and Brian Means are the barman that worked in most different bars with 4 and 3 different bars for them.</p>
+</ol>
+
+<h1>
+    Cocktail Analysis – Cocktail Overview
+</h1>
+
+<p>
+    I create a dashboard page that would be like an overview of data and cocktails with the option to geo-locate each cocktail and know who it’s the bartender
+    and what is the bar/company linked. On mouse hover is even possible to see for each cocktail, the recipe to prepare it in terms of quantity/ingredients/garnishes.
+</p>
+
+<h1>
+    Cocktail Analysis – Cocktail Analysis
+</h1>
+
+<p>
+    Related to the cocktails, i decided to answer at these questions using the dashboard information:
+</p>
+
+ <ol>
+    <li>What is the cocktail that contain the major number of ingredients?</li>
+  <p>The outstanding cocktail that contains the major number of ingredients is called “Rose Sangria” with 12 ingredients 
+    followed by Bloody Swede (11).
+  </p>
+    <li>What is the cocktail that contain the major number of garnishes?</li>
+  <p>
+      Here the information is not really relevant. Cause there is a long list of cocktails with 3 garnishes used. 
+      It’s anyway interesting that there isn't an outstanding cocktail that have an huge number of garnishes.
+  </p>
+    <li>What is the company/bar that make more cocktail?</li>
+  <p>
+      The most popular company/bar that make more cocktails is the “Dirty habit” with 29 cocktails.
+  </p>
+ </ol>
+
+
+<h1>
+  Cocktail Analysis – Location Analysis
+</h1>
+
+<p>The goal of this analysis is to define for each city all the information that we can extract. For example:</p>
+
+<ol>
+    <li>What is the city that have more bartenders that works?</li>
+  <p>This information it’s really useful cause permits to understand what is the city that have ideally more bars 
+    or where is the major business of cocktails located. The analysis shows that the city that have more bartenders it's San Francisco with 72 Bartenders, an huge amount compared to other cities. 
+    Others bars in fact that are following: Houston and New York with 22 Bartenders.
+    You can see then that the difference is really huge</p>
+    <li>What is the city that host the biggest number of bars/companies?</li>
+  <p>
+    If a city has a major number of cocktails made, should likely have the major number of cocktails made, but is not every time that the case, 
+    depends as well on the number of cocktail that a single company made. 
+    The data shows that the city with the biggest numbers of bars/companies is San Francisco (64), followed by New York (15) and Chicago (12)
+  </p>
+    <li>What is the city where that have the biggest number of cocktails made?</li>
+  <p>Again, following the same way of thinking as before, it’s obvious to suppose that the city that have the biggest number of cocktails made should be San Francisco, 
+    and that’s is the case with 156 cocktails. 
+    Other location that follows are New York and Houston (26).</p>
+  </ol>
+
+  <h1>
+      Cocktail Analysis – Garnishes and Ingredients Analysis
+  </h1>
+
+  <p>
+      For the Analysis of the most garnishes and ingredients used in PowerBI i decided to use an external visualization element that is not yet officially integrated: “WordCloud”. 
+      The "WordCloud" component permits to highlight the words that appear most of the time in the dataset.
+      Does it mean that an ingredient or a garnish that appear multiple times in the data, will be displayed with a bigger format compared to words that appear less time. 
+  </p>
+
+  <p>
+    The questions that i wanted to answer are the following:
+  </p>
+
+  <ol>
+    <li>What is the ingredient most used in the cocktails?</li>
+  <p>
+    The Lemon Juice is the ingredient used most of the time (128), followed by the “Luxardo Maraschino Liqueur” (91) 
+    and the “King S Ginger Liqueur” (89)
+  </p>
+    <li>What is the garnish most used in the cocktails?</li>
+  <p>
+    The “Luxardo Cherry” is the garnish most used (65), followed by the Lemon Peel and Lemon Twist (32)
+  </p>
+    <li>What is the company/bar that make more cocktails?</li>
+  <p>The most popular company/bar that make more cocktails is the “Dirty habit” with 29 cocktails.</p>
+  </ol>
+
+  <h1>
+      Cocktail Analysis – Closing Overview
+  </h1>
+
+  <p>
+      After these previous analysis is possible to say:
+  </p>
+
+  <ol>
+      <li>San Francisco is the most popular city for the cocktail business with the highest number of cocktails made and where most of bars and companies are located.</li>
+      <li>Francesco Lafranconi is the most popular bartender based on cocktails made and based on the number of different ingredient used.</li>
+      <li>Dirty Habit is the company that had the biggest number of cocktails made. </li>
+      <li>The lemon-based ingredients and garnishes are the most popular.</li>
+  </ol>
+
+    <h1>
+        Cocktail Analysis – Analytical supposition and verifications
+    </h1>
+
+    <p>
+        Now, after the previous analysis, i wanted to write down some supposition that needs to be verified with a further analysis:
+        <ol>
+        <li>Assumption: Francesco Lafranconi is working in “Dirty Habit” in San Francisco </li>
+        <li>Assumption: Francesco Lafranconi used at least one of the top 3 garnishes and ingredients for his cocktails</li>
+        </ol>
+        
+        After doing an examination of the dataset and at the data available already in the dashboard pages, 
+        I decided to put some filters in each report tab, that will allow the user to verify these assumptions. 
+        With the filters available is possible to verify that Francesco Lafranconi is not directly linked to any bar/company, so the first assumption is not true. 
+        It's possible to verify that he used some of the top 3 garnishes and ingredients for his cocktails, so the second assumption is true.
+        
+    </p>
